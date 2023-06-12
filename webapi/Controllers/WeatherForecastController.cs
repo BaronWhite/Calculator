@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace webapi.Controllers;
+namespace LB.Demos.CalculatorWebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]

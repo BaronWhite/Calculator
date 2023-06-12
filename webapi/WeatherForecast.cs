@@ -1,4 +1,4 @@
-namespace webapi;
+namespace LB.Demos.CalculatorWebApi;
 
 public class WeatherForecast
 {

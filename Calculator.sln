@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularapp", "angularapp\angularapp.esproj", "{B0C84B21-E45B-4CB1-9DAF-27E228C3EB8B}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AngularApp", "angularapp\AngularApp.esproj", "{B0C84B21-E45B-4CB1-9DAF-27E228C3EB8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webapi", "webapi\webapi.csproj", "{3895DACD-8980-4497-BDCC-EFD69CABE63A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "webapi\WebApi.csproj", "{3895DACD-8980-4497-BDCC-EFD69CABE63A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
