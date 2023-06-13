@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
+    ProbabilityCalculationsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule
