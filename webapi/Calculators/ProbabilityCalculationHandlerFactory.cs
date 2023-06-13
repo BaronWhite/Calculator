@@ -12,6 +12,11 @@ public class ProbabilityCalculationHandlerFactory : ICalculationHandlerFactory<P
             { ProbabilityCalculations.Combine, new CombineProbabilityHandler() },
         };
 
+    private static readonly IEnumerable<ProbabilityCalculations.CalculationType> CalculationTypes =
+        CalculationHandlers.Keys.Select(calculations => calculations.Type);
+
+    public bool IsCalculationsSupported(ProbabilityCalculations.CalculationType calculationType) => CalculationTypes.Contains(calculationType);
+
     public IEnumerable<ProbabilityCalculations> GetSupportedCalculations() => CalculationHandlers.Keys;
 
     public ICalculationHandler GetHandler(ProbabilityCalculations.CalculationType calculationType)

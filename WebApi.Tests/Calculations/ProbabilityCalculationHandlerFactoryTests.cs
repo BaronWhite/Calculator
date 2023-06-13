@@ -36,4 +36,15 @@ public class ProbabilityCalculationHandlerFactoryTests
 
         actual.Should().BeOfType(expectedHandler);
     }
+
+    [Theory]
+    [InlineData(ProbabilityCalculations.CalculationType.Combine, true)]
+    [InlineData(ProbabilityCalculations.CalculationType.Either, true)]
+    [InlineData((ProbabilityCalculations.CalculationType)5, false)]
+    public void IsCalculationsSupported_ReturnsExpectedResult(ProbabilityCalculations.CalculationType calculationType, bool expected)
+    {
+        var actual = _sut.IsCalculationsSupported(calculationType);
+
+        actual.Should().Be(expected);
+    }
 }

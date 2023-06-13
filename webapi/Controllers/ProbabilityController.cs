@@ -1,3 +1,4 @@
+using FluentValidation;
 using LB.Demos.CalculatorWebApi.Enums;
 using LB.Demos.CalculatorWebApi.Interfaces;
 using LB.Demos.CalculatorWebApi.Requests;
@@ -12,12 +13,15 @@ public class ProbabilityController : ControllerBase
 {
     private readonly ILogger<WeatherForecastController> _logger;
     private readonly ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> _calculationHandlerFactory;
+    private readonly AbstractValidator<ProbabilityCalculationRequest> _probabilityRequestValidator;
 
     public ProbabilityController(ILogger<WeatherForecastController> logger,
-        ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> calculationHandlerFactory)
+        ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> calculationHandlerFactory,
+        AbstractValidator<ProbabilityCalculationRequest> probabilityRequestValidator)
     {
         _logger = logger;
         _calculationHandlerFactory = calculationHandlerFactory;
+        _probabilityRequestValidator = probabilityRequestValidator;
     }
 
     [HttpGet("supported-calculations")]
@@ -47,6 +51,7 @@ public class ProbabilityController : ControllerBase
         // wonder what your thoughts are
         _logger.LogDebug("{class}.{method} start.", nameof(ProbabilityController), nameof(CalculateProbability));
 
+        _probabilityRequestValidator.ValidateAndThrow(calculation);
         ICalculationHandler handler = _calculationHandlerFactory.GetHandler(calculation.CalculationType);
         double result = handler.Calculate(calculation.A, calculation.B);
         return result;

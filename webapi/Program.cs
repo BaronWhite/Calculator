@@ -1,6 +1,8 @@
+using FluentValidation;
 using LB.Demos.CalculatorWebApi.Calculators;
 using LB.Demos.CalculatorWebApi.Enums;
 using LB.Demos.CalculatorWebApi.Interfaces;
+using LB.Demos.CalculatorWebApi.Requests;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType>, ProbabilityCalculationHandlerFactory>();
+builder.Services.AddScoped<AbstractValidator<ProbabilityCalculationRequest>, ProbabilityCalculationRequest.Validator>();
 
 var app = builder.Build();
 
