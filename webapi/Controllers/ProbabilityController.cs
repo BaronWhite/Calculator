@@ -11,10 +11,10 @@ namespace LB.Demos.CalculatorWebApi.Controllers;
 public class ProbabilityController : ControllerBase
 {
     private readonly ILogger<WeatherForecastController> _logger;
-    private readonly ICalculationHandlerFactory<ProbabilityCalculations> _calculationHandlerFactory;
+    private readonly ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> _calculationHandlerFactory;
 
     public ProbabilityController(ILogger<WeatherForecastController> logger,
-        ICalculationHandlerFactory<ProbabilityCalculations> calculationHandlerFactory)
+        ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> calculationHandlerFactory)
     {
         _logger = logger;
         _calculationHandlerFactory = calculationHandlerFactory;
@@ -47,7 +47,7 @@ public class ProbabilityController : ControllerBase
         // wonder what your thoughts are
         _logger.LogDebug("{class}.{method} start.", nameof(ProbabilityController), nameof(CalculateProbability));
 
-        ICalculationHandler handler = _calculationHandlerFactory.GetHandler((int)calculation.CalculationType);
+        ICalculationHandler handler = _calculationHandlerFactory.GetHandler(calculation.CalculationType);
         double result = handler.Calculate(calculation.A, calculation.B);
         return result;
     }

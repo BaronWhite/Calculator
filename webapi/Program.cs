@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ICalculationHandlerFactory<ProbabilityCalculations>, ProbabilityCalculationHandlerFactory>();
+builder.Services.AddSingleton<ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType>, ProbabilityCalculationHandlerFactory>();
 
 var app = builder.Build();
 

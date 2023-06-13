@@ -2,8 +2,10 @@ using LB.Demos.CalculatorWebApi.Enums;
 
 namespace LB.Demos.CalculatorWebApi.Interfaces;
 
-public interface ICalculationHandlerFactory<TCalculations> where TCalculations : ICalculations
+public interface ICalculationHandlerFactory<out TCalculations, in TEnum>
+    where TCalculations : ICalculations
+    where TEnum : Enum
 {
     IEnumerable<TCalculations> GetSupportedCalculations();
-    ICalculationHandler GetHandler(int calculationType);
+    ICalculationHandler GetHandler(TEnum calculationType);
 }
