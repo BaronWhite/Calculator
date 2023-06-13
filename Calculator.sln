@@ -7,6 +7,8 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AngularApp", "angularapp\An
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "webapi\WebApi.csproj", "{3895DACD-8980-4497-BDCC-EFD69CABE63A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Tests", "WebApi.Tests\WebApi.Tests.csproj", "{4962D857-8217-4C06-A232-E205C3E701BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{3895DACD-8980-4497-BDCC-EFD69CABE63A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3895DACD-8980-4497-BDCC-EFD69CABE63A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3895DACD-8980-4497-BDCC-EFD69CABE63A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4962D857-8217-4C06-A232-E205C3E701BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4962D857-8217-4C06-A232-E205C3E701BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4962D857-8217-4C06-A232-E205C3E701BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4962D857-8217-4C06-A232-E205C3E701BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
