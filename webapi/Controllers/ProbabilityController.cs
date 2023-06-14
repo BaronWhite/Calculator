@@ -4,6 +4,7 @@ using LB.Demos.CalculatorWebApi.Interfaces;
 using LB.Demos.CalculatorWebApi.Requests;
 using LB.Demos.CalculatorWebApi.Responses;
 using Microsoft.AspNetCore.Mvc;
+using ILogger = Serilog.ILogger;
 
 namespace LB.Demos.CalculatorWebApi.Controllers;
 
@@ -11,11 +12,11 @@ namespace LB.Demos.CalculatorWebApi.Controllers;
 [Route("[controller]")]
 public class ProbabilityController : ControllerBase
 {
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger _logger;
     private readonly ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> _calculationHandlerFactory;
     private readonly AbstractValidator<ProbabilityCalculationRequest> _probabilityRequestValidator;
 
-    public ProbabilityController(ILogger<WeatherForecastController> logger,
+    public ProbabilityController(ILogger logger,
         ICalculationHandlerFactory<ProbabilityCalculations, ProbabilityCalculations.CalculationType> calculationHandlerFactory,
         AbstractValidator<ProbabilityCalculationRequest> probabilityRequestValidator)
     {
@@ -27,8 +28,6 @@ public class ProbabilityController : ControllerBase
     [HttpGet("supported-calculations")]
     public IOrderedEnumerable<ProbabilityCalculationTypeResponse> GetSupportedProbabilityCalculations()
     {
-        _logger.LogDebug("{class}.{method} start.", nameof(ProbabilityController), nameof(GetSupportedProbabilityCalculations));
-
         IOrderedEnumerable<ProbabilityCalculationTypeResponse> calculations = _calculationHandlerFactory.GetSupportedCalculations()
             .Select(calc => new ProbabilityCalculationTypeResponse(
                 CalculationType: calc.Type,
@@ -46,14 +45,11 @@ public class ProbabilityController : ControllerBase
     [HttpPost("calculate")]
     public double CalculateProbability([FromBody] ProbabilityCalculationRequest calculation)
     {
-        // I actually dislike this log style, I think it's what the stack trace and exceptions are for
-        // If you need to dig through logs for this info, ouch, but I've seen it used and even parameters included,
-        // wonder what your thoughts are
-        _logger.LogDebug("{class}.{method} start.", nameof(ProbabilityController), nameof(CalculateProbability));
-
         _probabilityRequestValidator.ValidateAndThrow(calculation);
         ICalculationHandler handler = _calculationHandlerFactory.GetHandler(calculation.CalculationType);
         double result = handler.Calculate(calculation.A, calculation.B);
+        _logger.Information("Performed calculation: A [{a}] B [{b}] Type [{type}] Result [{result}]",
+            calculation.A, calculation.B, calculation.CalculationType.ToString(), result);
         return result;
     }
 }

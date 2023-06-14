@@ -519,3 +519,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 Web/.angular
+WebApi/logs
